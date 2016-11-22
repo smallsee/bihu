@@ -219,6 +219,11 @@ class User extends Model
 
   }
 
+  //检查用户是否存在
+  public function exists(){
+    return success(['count'=>$this->where(rq())->count()]);
+  }
+
   public function questions(){
     return $this
       ->belongsToMany('App\Question')

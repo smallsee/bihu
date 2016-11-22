@@ -65,7 +65,7 @@ function success($data_to_merge=[]){
 Route::group(['middleware' => ['web']], function () {
 
   Route::get('/', function () {
-    return view('welcome');
+    return view('index');
   });
 
   //user
@@ -90,6 +90,9 @@ Route::group(['middleware' => ['web']], function () {
   });
   Route::any('api/user/validate_reset_password',function(){
     return user_ins()->validate_reset_password();
+  });
+  Route::any('api/user/exists',function(){
+    return user_ins()->exists();
   });
   //获取用户信息
   Route::any('api/user/read',function(){
