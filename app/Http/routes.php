@@ -51,6 +51,10 @@ function success($data_to_merge=[]){
 
   return $data;
 }
+
+function is_logged_in(){
+  return session('user_id') ?: false;
+}
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -146,5 +150,19 @@ Route::group(['middleware' => ['web']], function () {
   //时间线
   Route::any('api/timeline','CommonController@timeline');
 
+  //页面的路由
+
+  Route::get('tpl/page/home',function(){
+    return view('page.home');
+  });
+  Route::get('tpl/page/login',function(){
+    return view('page.login');
+  });
+  Route::get('tpl/page/signup',function(){
+    return view('page.signup');
+  });
+  Route::get('tpl/page/question_add',function(){
+    return view('page.question_add');
+  });
 
 });

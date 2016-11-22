@@ -102,6 +102,11 @@ class Answer extends Model
     return ['status'=>1];
   }
 
+    //关联user表
+    public function user(){
+      return $this->belongsTo('App\User');
+    }
+
    public function users(){
      return $this
        ->belongsToMany('App\User')

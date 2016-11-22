@@ -65,7 +65,7 @@ class User extends Model
     session()->put('username',$user->username);
     session()->put('user_id',$user->id);
 
-    return success();
+    return success(['id'=>session('user_id')]);
 
   }
 
@@ -90,13 +90,13 @@ class User extends Model
 //    session()->put('user_id',null);
     session()->forget('username');
     session()->forget('user_id');
-    return success();
-    //return redirect('/');
+//    return success();
+    return redirect('/');
   }
 
   //判断用户是否登录
   public function is_logged_in(){
-    return session('user_id') ?: false;
+    return is_logged_in();
   }
 
   //更改密码

@@ -8,6 +8,7 @@ class Question extends Model
 {
     public function add(){
 
+
       if (!user_ins()->is_logged_in())
         return ['status'=>0,'msg' => 'login required'];
 
@@ -87,5 +88,10 @@ class Question extends Model
       return $question->delete() ? ['status' => 1]
         : ['status' => 0,'db_delete_failed'];
 
+    }
+
+    //关联user表
+    public function user(){
+      return $this->belongsTo('App\User');
     }
 }
