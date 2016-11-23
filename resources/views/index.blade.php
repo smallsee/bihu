@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="zh" ng-app="bihu">
+<html lang="zh" ng-app="bihu" user-id="{{session('user_id')}}">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport"
@@ -15,6 +15,7 @@
   <script src="{{asset('/js/user.js')}}"></script>
   <script src="{{asset('/js/question.js')}}"></script>
   <script src="{{asset('/js/common.js')}}"></script>
+  <script src="{{asset('/js/answer.js')}}"></script>
 </head>
 <body>
 <div class="navbar clearfix">
@@ -50,11 +51,6 @@
 </div>
 
 </body>
-
-
-
-
-
 
 
 

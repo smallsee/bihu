@@ -1,11 +1,16 @@
 ;(function(){
   'use strict';
 
+  window.his = {
+    id:parseInt($('html').attr('user-id'))
+  };
+
   angular.module('bihu',[
     'ui.router',
     'common',
     'question',
-    'user'
+    'user',
+    'answer'
   ])
     .config(['$interpolateProvider','$stateProvider','$urlRouterProvider',
       function($interpolateProvider,$stateProvider,$urlRouterProvider){
