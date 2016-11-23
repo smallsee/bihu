@@ -11,17 +11,12 @@
 
           for (var i=0;i<answers.length;i++){
             var votes,item = answers[i];
-
             if (!item['question_id']) continue;
-
             me.data[item.id] = item;
-
             if (!item['users']) continue;
-
             item.upvote_count=0;
             item.downvote_count=0;
             votes = item['users'];
-
             if (votes)
               for (var j=0;j<votes.length;j++){
                 var v = votes[j];
@@ -48,7 +43,6 @@
             }
           }
 
-
           return $http.post('api/answer/vote',conf)
             .then(function(r){
               if (r.data.status ){
@@ -70,7 +64,18 @@
                me.data[id] =r.data.data;
             })
 
-        }
+        };
+
+        me.read = function(param){
+          return $http.post('api/answer/read',param)
+            .then(function(r){
+              if (r.data.status){
+                me.data = angular.merge({},me.data,r.data.data);
+                return r.data.data;
+              }
+              return false;
+            })
+        };
       }
 
     ])

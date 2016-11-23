@@ -50,10 +50,33 @@ class Answer extends Model
 
    }
 
+   public function read_by_user_id($user_id){
+
+     $user= user_ins()->find($user_id);
+     if (!$user) return err('user not exists');
+
+     $r =  $this
+          ->with('question')
+          ->where('user_id',$user_id)
+          ->get()->keyBy('id');
+
+     return success($r->toArray());
+   }
+
    public function read(){
 
-     if (!rq('id') && !rq('question_id'))
+     if (!rq('id') && !rq('question_id') && !rq('user_id'))
        return ['status'=>0,'msg'=>'id or content is required'];
+
+     if (rq('user_id')){
+
+       $user_id = rq('user_id') === 'self' ?
+         session('user_id') :
+         rq('user_id');
+
+       return $this->read_by_user_id($user_id);
+     }
+
 
      if (rq('id')){
 
@@ -119,6 +142,10 @@ class Answer extends Model
        ->withPivot('vote')
        ->withTimestamps();
 
+   }
+
+   public function question(){
+     return $this->belongsTo('App\Question');
    }
 
 }

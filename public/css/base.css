@@ -12,8 +12,14 @@ body{
 }
 
 h1{
-  margin: 0;
   font-size: 20px;
+}
+h2{
+  font-size:18px;
+  margin-bottom: 5px;
+}
+h2,h1{
+  margin: 0;
 }
 a{
   text-decoration: none;
@@ -98,13 +104,14 @@ input,button{
 .container.signup,
 .container.login,
 .container.home,
+.container.user,
 .container.question-add,
 .container.reset-password{
   max-width: 400px;
   margin-top: 15px;
 }
 .container.home{
-  max-width: 500px;
+  max-width: 600px;
 }
 
 
@@ -214,10 +221,10 @@ button[disabled]{
 .feed-item-content .content-owner{
   font-size: 13px;
 }
-.home h1,
+h1,h2,
 .feed-item-content .content-act,
 .feed-item-content .content-owner .desc,
-.feed-item-content .action-set{
+.action-set{
   color: #666;
 }
 
@@ -257,4 +264,19 @@ button[disabled]{
   text-align: center;
   color: #7b7878;
   font-size: 15px;
+}
+
+.info_item > *:first-child{
+  width: 20%;
+  float: left;
+}
+.info_item > *:last-child{
+  width: 80%;
+  float: left;
+}
+.info_item > *{
+  margin-bottom: 5px;
+}
+.user.container .title{
+  font-weight: 700;
 }

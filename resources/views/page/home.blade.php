@@ -24,8 +24,8 @@
 
         <div class="comment-block">
           <div class="hr"></div>
-          <div class="hr-comment-item-set">
-            <div class="comment-item-set">
+
+            <div class="comment-item-set clearfix">
               <div class="rect"></div>
               <div class="comment-item clearfix">
                 <div class="user">小海</div>
@@ -35,7 +35,7 @@
               </div>
               <div class="hr"></div>
             </div>
-          </div>
+
         </div>
       </div>
       <div class="hr"></div>

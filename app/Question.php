@@ -50,10 +50,30 @@ class Question extends Model
       return $question->save() ? ['status' => 1] : ['status' => 0,'db_update_failed'];
     }
 
+    public function read_by_user_id($user_id){
+
+      $user= user_ins()->find($user_id);
+      if (!$user) return err('user not exists');
+
+      $r =  $this->where('user_id',$user_id)
+        ->get()->keyBy('id');
+
+      return success($r->toArray());
+    }
+
 //    查看问题api
     public function read(){
       if (rq('id'))
         return ['status',$this->find(rq('id'))];
+
+      if (rq('user_id')){
+
+        $user_id = rq('user_id') === 'self' ?
+          session('user_id') :
+          rq('user_id');
+
+        return $this->read_by_user_id($user_id);
+      }
 
 //      $limit = rq('limit') ?: 15;
 //      $skip = ((rq('page') ?: 1) -1)* $limit;

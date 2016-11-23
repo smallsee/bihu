@@ -71,6 +71,7 @@
 
         });
 
+
         /*监控我们数据的变化 如果回答数据又变化同时更新其他模块中的回答数据*/
         $scope.$watch(function(){
           return AnswerService.data;

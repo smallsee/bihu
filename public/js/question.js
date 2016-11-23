@@ -25,7 +25,18 @@
             },function(e){
 
             })
-        }
+        };
+        me.read = function(param){
+          return $http.post('api/question/read',param)
+            .then(function(r){
+              if (r.data.status){
+                me.data = angular.merge({},me.data,r.data.data);
+                return r.data.data;
+              }
+                return false;
+            })
+
+        };
       }
     ])
     .controller('QuestionAddController',[

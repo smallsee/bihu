@@ -42,17 +42,29 @@ function err($msg=null){
   return ['status'=>0,'msg'=>$msg];
 }
 
-function success($data_to_merge=[]){
+function success($data_to_add=[]){
 
   $data = ['status'=>1,'data'=>[]];
-  if ($data_to_merge)
-    $data['data'] = array_merge($data['data'],$data_to_merge);
+  if ($data_to_add)
+    $data['data'] = $data_to_add;
 
   return $data;
 }
 
 function is_logged_in(){
   return session('user_id') ?: false;
+}
+
+//其他模块查找用户
+function read_by_user_id($user_id){
+
+  $user= user_ins()->find($user_id);
+  if (!$user) return err('user not exists');
+
+  $r =  $this->where('user_id',$user_id)
+    ->get()->keyBy('id');
+
+  return success($r->toArray());
 }
 /*
 |--------------------------------------------------------------------------
@@ -162,6 +174,9 @@ Route::group(['middleware' => ['web']], function () {
   });
   Route::get('tpl/page/question_add',function(){
     return view('page.question_add');
+  });
+  Route::get('tpl/page/user',function(){
+    return view('page.user');
   });
 
 });
